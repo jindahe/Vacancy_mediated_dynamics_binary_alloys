@@ -4,7 +4,7 @@ import glob
 import re
 
 def plot_correlations():
-    files = glob.glob('../output/Cr_t_*.txt')
+    files = glob.glob('../output_3d/Cr_t_*.txt')
     files.sort(key=lambda x: int(re.search(r't_(\d+)', x).group(1)))
 
     plt.figure(figsize=(8, 6))
@@ -19,7 +19,7 @@ def plot_correlations():
     plt.title('Pair Correlation Function $C(r)$ over Time')
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig('../output/correlation_functions.png')
+    plt.savefig('../output_3d/correlation_functions.png')
     plt.show()
 
 if __name__ == "__main__":

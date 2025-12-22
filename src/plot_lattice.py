@@ -11,7 +11,7 @@ def generate_lattice_gif():
     files.sort(key=lambda x: int(re.search(r't_(\d+)', x).group(1)))
 
     if not files:
-        print("错误: 在 output/ 文件夹下未找到晶格数据文件。")
+        print("错误: 在 ../output/ 文件夹下未找到晶格数据文件。")
         return
 
     # 2. 设置绘图环境
