@@ -17,11 +17,11 @@ def plot_scaling_comparison():
 
     # 获取关联函数零点数据
     cr_files = glob.glob('../output/Cr_t_*.txt')
-    cr_files.sort(key=lambda x: int(re.search(r't_(\d+)', x).group(1)))
+    cr_files.sort(key=lambda x: int(re.search(r't_(\d+)\.txt', x).group(1)))
     
     t_c, R_c = [], []
     for f in cr_files:
-        t_val = int(re.search(r't_(\d+)', f).group(1))
+        t_val = int(re.search(r't_(\d+)\.txt', f).group(1))
         data = np.loadtxt(f)
         z = find_zero_crossing(data[:, 0], data[:, 1])
         if z:

@@ -20,8 +20,9 @@ SLICE_INDEX = L // 2  # 2D切片的位置（中间）
 def generate_3d_gif():
     # 1. 获取并排序文件
     files = glob.glob(os.path.join(INPUT_DIR, 'lattice_3d_t_*.txt'))
+    print(f"找到的文件列表: {files}")
     # 使用正则表达式提取时间步 t 进行数值排序
-    files.sort(key=lambda x: int(re.search(r't_(\d+)', x).group(1)))
+    files.sort(key=lambda x: int(re.search(r't_(\d+)\.txt', x).group(1)))
 
     if not files:
         print(f"错误: 在 {INPUT_DIR}/ 中未找到数据文件。请先运行 C++ 模拟。")
@@ -60,7 +61,7 @@ def generate_3d_gif():
     # 3. 定义动画更新函数
     def update(frame_idx):
         current_file = files[frame_idx]
-        t_val = re.search(r't_(\d+)', current_file).group(1)
+        t_val = re.search(r't_(\d+)\.txt', current_file).group(1)
         print(f"Processing frame {frame_idx+1}/{len(files)}: t = {t_val} MCS...")
 
         # 读取并重构数据

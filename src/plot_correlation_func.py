@@ -5,11 +5,11 @@ import re
 
 def plot_correlations():
     files = glob.glob('../output_3d/Cr_t_*.txt')
-    files.sort(key=lambda x: int(re.search(r't_(\d+)', x).group(1)))
+    files.sort(key=lambda x: int(re.search(r't_(\d+)\.txt', x).group(1)))
 
     plt.figure(figsize=(8, 6))
     for f in files:
-        t = re.search(r't_(\d+)', f).group(1)
+        t = re.search(r't_(\d+)\.txt', f).group(1)
         data = np.loadtxt(f)
         plt.plot(data[:, 0], data[:, 1], label=f't = {t}')
 
