@@ -1,2 +1,5 @@
 output/*
 !output/.gitkeep
+
+output_3d/*
+!output_3d/.gitkeep
