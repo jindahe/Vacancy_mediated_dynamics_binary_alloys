@@ -1,6 +1,7 @@
 #include "functions_3d.h"
 #include <chrono>
 #include <filesystem>
+#include <math.h>
 
 using namespace std;
 namespace fs = std::filesystem;
@@ -13,7 +14,7 @@ int main() {
     const double Tc_3d = 4.51; // 3D 临界温度
     const double T = Tc_3d / 2.0;
     const double J = 1.0;
-    const int num_mc = 10000;
+    const int num_mc = pow(2,20);
 
     // 2. 初始化
     mt19937 gen(chrono::steady_clock::now().time_since_epoch().count());
@@ -54,7 +55,7 @@ int main() {
 
         // 4. 定期采样 (t = 2^n)
         if ((mcs > 0 && (mcs & (mcs - 1)) == 0) || mcs == 0 || mcs == num_mc) {
-            double R = 2.0 / ((current_energy / N) / J + 2.0);
+            double R = 3.0 / ((current_energy / N) / J + 3.0);
             r_file << mcs << "\t" << R << endl;
             
             vector<double> Cr = calculate_C_r_3d(lattice, L);
