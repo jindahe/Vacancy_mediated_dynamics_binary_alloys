@@ -24,9 +24,13 @@ int main() {
     
     double current_energy = get_total_energy_3d(lattice, L, J);
     ofstream r_file("../output_3d/t_vs_R.txt");
+    ofstream time_log("../output_3d/time_log.txt");
+
+    auto total_start = chrono::high_resolution_clock::now();
 
     // 3. 模拟循环
     for (int mcs = 0; mcs <= num_mc; ++mcs) {
+        auto step_start = chrono::high_resolution_clock::now();
         for (int step = 0; step < N; ++step) {
             int dir = uniform_int_distribution<int>(0, 5)(gen); // 6个方向
             int vx = v_pos / (L * L);
@@ -53,8 +57,13 @@ int main() {
             }
         }
 
+        auto step_end = chrono::high_resolution_clock::now();
+        double step_time = chrono::duration<double>(step_end - step_start).count();
+
+        bool is_sample_step = ( (mcs > 0 && (mcs & (mcs - 1)) == 0) || mcs == 0 || mcs == num_mc );
+
         // 4. 定期采样 (t = 2^n)
-        if ((mcs > 0 && (mcs & (mcs - 1)) == 0) || mcs == 0 || mcs == num_mc) {
+        if (is_sample_step) {
             double R = 3.0 / ((current_energy / N) / J + 3.0);
             r_file << mcs << "\t" << R << endl;
             
@@ -65,9 +74,22 @@ int main() {
 
             save_lattice_3d(lattice, L, mcs);
             
-            cout << "MCS: " << mcs << "\tR: " << R << endl;
+            cout << "MCS: " << mcs << " | Time: " << step_time << " s | R: " << R << endl;
+        } else {
+            if (mcs % 1000 == 0) {
+                cout << "MCS: " << mcs << " | Time: " << step_time << " s" << endl;
+            }
+        }
+
+        if (mcs % 1000 == 0) {
+            time_log << mcs << "\t" << step_time << "\n";
         }
     }
+    
+    auto total_end = chrono::high_resolution_clock::now();
+    double total_time = chrono::duration<double>(total_end - total_start).count();
+    cout << "\nTotal simulation time: " << total_time << " s (" << total_time/60.0 << " min)" << endl;
+    time_log.close();
     r_file.close();
     return 0;
 }
