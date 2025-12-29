@@ -29,6 +29,10 @@ When a binary alloy is rapidly quenched from high temperature to a low-temperatu
 ```
 .
 ├── README.md                  # 项目说明文档
+├── final/                 # 最后提交作业
+│   ├── presentation.pdf       
+│   ├── presentation.pptx      
+│   └── report.pdf
 ├── discription.md            # 详细项目描述
 ├── baseline/                 # 基线实现（Kawasaki 动力学）
 │   ├── kawasaki_dynamic.cpp
@@ -47,6 +51,12 @@ When a binary alloy is rapidly quenched from high temperature to a low-temperatu
 ├── output_3d/               # 3D 模拟输出数据
 └── thesis/                   # 相关论文和文档
 ```
+
+## 最终交付物 (Final Deliverables)
+
+- 最终报告英文版: [final/report.pdf](final/report.pdf)
+- 最终报告中文版: [final/计算物理project汇报.pdf](final/%E8%AE%A1%E7%AE%97%E7%89%A9%E7%90%86project%E6%B1%87%E6%8A%A5.pdf)
+- 汇报幻灯片: [final/计算物理project汇报.pptx](final/%E8%AE%A1%E7%AE%97%E7%89%A9%E7%90%86project%E6%B1%87%E6%8A%A5.pptx)
 
 ## 编译与运行 (Compilation and Execution)
 
