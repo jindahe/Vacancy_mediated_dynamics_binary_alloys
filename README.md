@@ -201,5 +201,6 @@ Welcome to open issues and submit improvement suggestions!
 ## 联系方式 (Contact)
 
 如有问题，请通过 GitHub Issues 联系。
+邮件：boyujin@zju.edu.cn
 
 For questions, please contact via GitHub Issues.
